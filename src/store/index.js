@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
 
-const Store = createStore(() => {});
+const store = createStore(() => {});
 
-export default Store;
+export default store;
