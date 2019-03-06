@@ -43,6 +43,7 @@ class MapTest extends Component {
             {this.loadPickerOptions()}
           </Picker>
           <Button 
+            color="#000"
             title="Voltar"
             onPress={() => this.props.navigation.navigate('Main')}
           />
