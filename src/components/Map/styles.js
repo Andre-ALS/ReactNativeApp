@@ -4,11 +4,9 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-
-	pickerType: {
-		backgroundColor: '#fff',
-		height: 40, 
-		width: '100%'
+	
+	mapStyle: {
+		flex: 1,
 	},
 });
 

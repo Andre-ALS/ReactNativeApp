@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Button, StatusBar } from 'react-native';
-import { Picker } from 'native-base'
-import MapView from 'react-native-maps';
+import { View, Button, StatusBar, Picker } from 'react-native';
 
+import Map from '../../components/Map'
 import styles from './styles';
 
 class MapTest extends Component {
@@ -12,7 +11,7 @@ class MapTest extends Component {
   };
   
   state = {
-    type: 'standard',
+    mapType: 'standard',
     mapTypes: [
       'standard',
       'satellite',
@@ -34,30 +33,20 @@ class MapTest extends Component {
     return (
       <View style={styles.container}>
         <StatusBar translucent={false}/>
-        <MapView 
-          style={styles.mapStyle}
-          region={{
-            latitude: -23.19920816,
-            longitude: -45.88654494,
-            latitudeDelta: 0.0143,
-            longitudeDelta: 0.0134,
-          }}
-          showsUserLocation={true}
-          loadingEnabled
-          mapType={this.state.type}
-        />
-        <View>
+        <Map type={this.state.mapType}/>
+        <View style={styles.mapOptions}>
           <Picker
-            selectedValue={this.state.type}
-            onValueChange={type => this.setState({type})}
-          >
+              selectedValue={this.state.mapType}
+              style={styles.pickerType}
+              onValueChange={mapType => this.setState({mapType})}
+            >
             {this.loadPickerOptions()}
           </Picker>
+          <Button 
+            title="Voltar"
+            onPress={() => this.props.navigation.navigate('Main')}
+          />
         </View>
-        <Button 
-          title="Ir Para a Tela Principal"
-          onPress={() => this.props.navigation.navigate('Main')}
-        />
       </View>
     );
   }
