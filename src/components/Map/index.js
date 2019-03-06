@@ -1,15 +1,24 @@
 import React, { Component, Fragment } from 'react';
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
 import PropTypes from 'prop-types';
-import MapView, { Marker } from 'react-native-maps';
 import Geocoder from 'react-native-geocoding';
+import MapView, { Marker } from 'react-native-maps';
 
-import { getPixelSize } from '../../utils';
+import { 
+	Back,
+	styles,
+	LocationBox, 
+	LocationText, 
+	LocationTimeBox, 
+	LocationTimeText, 
+	LocationTimeTextSmall 
+} from './styles';
 import Search from '../Search';
+import Details from '../Details';
 import Directions from '../Directions';
-import { styles, LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
-
+import { getPixelSize } from '../../utils';
 import markerImage from '../../assets/marker.png'
+import backImage from '../../assets/back.png'
 
 Geocoder.init('AIzaSyAgToDeC0XcnA_SqlNgBMt-e1VqyrtVsyQ');
 
@@ -62,6 +71,10 @@ class MapTest extends Component {
 			}
 		})
 	}
+
+	handleBack = () => {
+		this.setState({ destination: null})
+	}
 	
 	render() {
 
@@ -90,10 +103,10 @@ class MapTest extends Component {
 
 									this.mapView.fitToCoordinates(result.coordinates, {
 										edgePadding: {
-											right: getPixelSize(50),
-											left: getPixelSize(50),
+											right: getPixelSize(120),
+											left: getPixelSize(120),
 											top: getPixelSize(50),
-											bottom: getPixelSize(50),
+											bottom: getPixelSize(350),
 										}
 									});
 								}}
@@ -116,7 +129,15 @@ class MapTest extends Component {
 						</Fragment>
 					}
 				</MapView>
-				<Search onLocationSelected={this.handleLocationSelected}/>
+				{ destination 
+					? <Fragment>
+						<Back onPress={this.handleBack}>
+							<Image source={backImage}/>
+						</Back>
+						<Details /> 
+					</Fragment>
+					: <Search onLocationSelected={this.handleLocationSelected}/>
+				}
 			</View>
 		)
 	}

@@ -34,7 +34,7 @@ class MapTest extends Component {
       <View style={styles.container}>
         <StatusBar translucent={false}/>
         <Map type={this.state.mapType}/>
-        <View style={styles.mapOptions}>
+        {/* <View style={styles.mapOptions}>
           <Picker
               selectedValue={this.state.mapType}
               style={styles.pickerType}
@@ -47,7 +47,7 @@ class MapTest extends Component {
             title="Voltar"
             onPress={() => this.props.navigation.navigate('Main')}
           />
-        </View>
+        </View> */}
       </View>
     );
   }

@@ -22,14 +22,14 @@ export const LocationBox = styled.View`
 	flex-direction: row;
 
 	${Platform.select({
-			ios: css`
-				margin-top: 20px;
-			`,
-			android: css`
-				margin-top: 10px;
-				margin-left: 10px;
-			`
-		})}
+		ios: css`
+			margin-top: 20px;
+		`,
+		android: css`
+			margin-top: 10px;
+			margin-left: 10px;
+		`
+	})}
 `;
 
 export const LocationText = styled.Text`
@@ -54,4 +54,10 @@ export const LocationTimeTextSmall = styled.Text`
 	color: #fff;
 	font-size: 10px;
 	text-align: center;
+`;
+
+export const Back = styled.TouchableOpacity`
+	position: absolute;
+	top: ${Platform.select({ ios: 60, android: 40 })};
+	left: 20px;
 `;
